@@ -1,0 +1,299 @@
+/*
+ * Definición de variables CSS personalizadas (custom properties) en el elemento :root
+ * Estas variables pueden ser accedidas desde cualquier parte del CSS
+ */
+:root {
+    --primary-color: #2d7d9a;       /* Color primario principal (azul verdoso) */
+    --secondary-color: #3aa6b9;     /* Color secundario (azul más claro) */
+    --accent-color: #ffd166;        /* Color de acento (amarillo/anaranjado) */
+    --dark-color: #333;             /* Color oscuro para texto (casi negro) */
+    --light-color: #f8f9fa;         /* Color claro (gris muy claro) */
+    --error-color: #dc3545;         /* Color para errores (rojo) */
+    --success-color: #28a745;       /* Color para éxito (verde) */
+}
+
+/*
+ * Estilos generales para el elemento body
+ * Define la apariencia base de toda la página
+ */
+body {
+    font-family: 'Inter', sans-serif;  /* Fuente principal */
+    background-color: #f5f9fa;         /* Color de fondo de la página */
+    color: var(--dark-color);          /* Color de texto usando variable */
+    line-height: 1.6;                  /* Espaciado entre líneas */
+    padding: 20px;                     /* Relleno alrededor del contenido */
+}
+
+/*
+ * Contenedor principal que centra el contenido y le da estilo
+ * Sirve como wrapper para el contenido principal
+ */
+.container {
+    max-width: 1200px;                 /* Ancho máximo del contenedor */
+    margin: 0 auto;                    /* Centrado horizontal */
+    background-color: white;           /* Fondo blanco */
+    padding: 30px;                     /* Espaciado interno */
+    border-radius: 10px;               /* Esquinas redondeadas */
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08); /* Sombra suave */
+}
+
+/*
+ * Estilos para los encabezados h1
+ * Títulos principales de la página
+ */
+h1 {
+    color: var(--primary-color);       /* Color usando variable primaria */
+    font-family: 'Montserrat', sans-serif; /* Fuente diferente para títulos */
+    font-weight: 700;                  /* Grosor de fuente (negrita) */
+    margin-bottom: 30px;               /* Margen inferior */
+    text-align: center;                /* Centrado horizontal */
+    position: relative;                /* Permite posicionamiento relativo para el pseudo-elemento */
+    padding-bottom: 15px;              /* Espacio para la línea decorativa */
+}
+
+/*
+ * Pseudo-elemento que crea una línea decorativa bajo el h1
+ * Añade un detalle visual bajo el título
+ */
+h1::after {
+    content: "";                       /* Necesario para que aparezca */
+    position: absolute;                /* Posicionamiento absoluto respecto al h1 */
+    bottom: 0;                         /* Colocado en la parte inferior */
+    left: 50%;                         /* Centrado horizontalmente */
+    transform: translateX(-50%);       /* Ajuste fino para centrado perfecto */
+    width: 80px;                       /* Ancho de la línea */
+    height: 4px;                       /* Altura/grosor de la línea */
+    background-color: var(--accent-color); /* Color usando variable de acento */
+    border-radius: 2px;                /* Esquinas ligeramente redondeadas */
+}
+
+/*
+ * Clase adicional para h1 centrados con margen superior
+ * Modificador para casos específicos
+ */
+h1.text-center {
+    margin-top: 20px;                  /* Margen superior adicional */
+}
+
+/*
+ * Estilos base para botones
+ * Define propiedades comunes a todos los botones
+ */
+.btn {
+    font-weight: 500;                  /* Grosor de fuente semi-negrita */
+    padding: 8px 15px;                 /* Espaciado interno */
+    border-radius: 6px;                /* Esquinas redondeadas */
+    transition: all 0.3s ease;         /* Transición suave para efectos hover */
+    margin-right: 10px;                /* Margen entre botones */
+}
+
+/*
+ * Estilos específicos para botones de tipo warning (advertencia)
+ * Usa colores amarillos/naranjas
+ */
+.btn-warning {
+    background-color: #ffc107;         /* Color de fondo */
+    border-color: #ffc107;             /* Color del borde */
+    color: #212529;                    /* Color de texto oscuro */
+}
+
+/*
+ * Efectos hover para botones warning
+ * Cambios al pasar el ratón
+ */
+.btn-warning:hover {
+    background-color: #e0a800;         /* Color de fondo más oscuro */
+    border-color: #d39e00;             /* Borde más oscuro */
+    transform: translateY(-2px);       /* Efecto de levitación */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/*
+ * Estilos para botones primarios
+ * Usan el color primario definido en variables
+ */
+.btn-primary {
+    background-color: var(--primary-color); /* Color de fondo */
+    border-color: var(--primary-color);     /* Color del borde */
+}
+
+/*
+ * Efectos hover para botones primarios
+ */
+.btn-primary:hover {
+    background-color: #246a83;         /* Color más oscuro */
+    border-color: #1f6077;             /* Borde más oscuro */
+    transform: translateY(-2px);       /* Efecto de levitación */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/*
+ * Estilos para botones de éxito
+ * Usan el color verde definido en variables
+ */
+.btn-success {
+    background-color: var(--success-color); /* Color de fondo */
+    border-color: var(--success-color);     /* Color del borde */
+}
+
+/*
+ * Efectos hover para botones de éxito
+ */
+.btn-success:hover {
+    background-color: #218838;         /* Color más oscuro */
+    border-color: #1e7e34;             /* Borde más oscuro */
+    transform: translateY(-2px);       /* Efecto de levitación */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/*
+ * Estilos para formularios que necesitan validación
+ * Contenedor principal del formulario
+ */
+.needs-validation {
+    padding: 20px;                     /* Espaciado interno */
+    background-color: white;           /* Fondo blanco */
+    border-radius: 8px;                /* Esquinas redondeadas */
+}
+
+/*
+ * Estilos para las etiquetas de los campos del formulario
+ */
+.form-label {
+    font-weight: 600;                  /* Texto semi-negrita */
+    color: var(--primary-color);       /* Color usando variable primaria */
+    margin-bottom: 8px;                /* Margen inferior */
+}
+
+/*
+ * Estilos para los controles de formulario (inputs, selects, etc.)
+ */
+.form-control {
+    padding: 10px 15px;                /* Espaciado interno */
+    border: 2px solid #e0f2f7;         /* Borde sutil */
+    border-radius: 6px;                /* Esquinas redondeadas */
+    transition: all 0.3s;              /* Transición suave para efectos focus */
+    background-color: #f8fafb;         /* Fondo muy claro */
+}
+
+/*
+ * Estilos para controles de formulario cuando están en foco
+ * Cambios cuando el usuario hace clic o tabula a un campo
+ */
+.form-control:focus {
+    border-color: var(--secondary-color); /* Borde con color secundario */
+    box-shadow: 0 0 0 0.25rem rgba(58, 166, 185, 0.25); /* Sombra azul suave */
+    background-color: white;           /* Fondo blanco */
+}
+
+/*
+ * Estilos para controles de formulario válidos
+ * Cuando la validación HTML5 es correcta
+ */
+.was-validated .form-control:valid,
+.form-control.is-valid {
+    border-color: var(--success-color); /* Borde verde */
+    /* SVG de checkmark como imagen de fondo */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;       /* Evita repetición */
+    background-position: right calc(0.375em + 0.1875rem) center; /* Posición */
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); /* Tamaño */
+}
+
+/*
+ * Estilos para controles de formulario inválidos
+ * Cuando la validación HTML5 falla
+ */
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+    border-color: var(--error-color);  /* Borde rojo */
+    /* SVG de círculo con signo de exclamación como imagen de fondo */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;       /* Evita repetición */
+    background-position: right calc(0.375em + 0.1875rem) center; /* Posición */
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); /* Tamaño */
+}
+
+/*
+ * Mensaje de feedback para campos inválidos
+ */
+.invalid-feedback {
+    color: var(--error-color);         /* Texto en rojo */
+    font-size: 0.85rem;                /* Tamaño de fuente pequeño */
+    margin-top: 5px;                   /* Margen superior */
+}
+
+/*
+ * Mensaje de feedback para campos válidos
+ */
+.valid-feedback {
+    color: var(--success-color);       /* Texto en verde */
+    font-size: 0.85rem;                /* Tamaño de fuente pequeño */
+    margin-top: 5px;                   /* Margen superior */
+}
+
+/*
+ * Estilos para el botón de enviar formulario
+ */
+.btn-submit {
+    background-color: var(--primary-color); /* Color primario */
+    border: none;                       /* Sin borde */
+    padding: 12px 30px;                 /* Espaciado interno generoso */
+    font-weight: 600;                   /* Texto negrita */
+    letter-spacing: 0.5px;              /* Espaciado entre letras */
+    margin-top: 20px;                   /* Margen superior */
+    transition: all 0.3s;               /* Transición suave */
+    width: auto;                        /* Ancho automático */
+}
+
+/*
+ * Efectos hover para el botón de enviar
+ */
+.btn-submit:hover {
+    background-color: #246a83;          /* Color más oscuro */
+    transform: translateY(-2px);        /* Efecto de levitación */
+    box-shadow: 0 5px 15px rgba(45, 125, 154, 0.3); /* Sombra azul suave */
+}
+
+/*
+ * Media query para dispositivos con ancho máximo de 768px (tablets y móviles)
+ * Ajustes responsivos para pantallas pequeñas
+ */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;                  /* Menor espaciado interno */
+    }
+
+    .btn {
+        display: block;                 /* Botones en bloque (ocupar todo el ancho) */
+        width: 100%;                    /* Ancho completo */
+        margin-bottom: 10px;            /* Margen inferior entre botones */
+        margin-right: 0;                /* Sin margen derecho */
+    }
+
+    .col-md-4 {
+        margin-bottom: 15px;            /* Margen inferior para columnas */
+    }
+}
+
+/*
+ * Animación de fadeIn para el formulario
+ * Hace que el formulario aparezca con efecto de fundido y movimiento
+ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;                     /* Inicio transparente */
+        transform: translateY(10px);     /* Posición inicial ligeramente abajo */
+    }
+    to {
+        opacity: 1;                     /* Final completamente visible */
+        transform: translateY(0);       /* Posición final normal */
+    }
+}
+
+/*
+ * Aplicación de la animación al formulario
+ */
+form {
+    animation: fadeIn 0.5s ease-out;    /* Duración 0.5s con easing ease-out */
+}

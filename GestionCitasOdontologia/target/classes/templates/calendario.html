@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario de Citas Odontológicas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/es.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link th:href="@{/css/estiloscalendario.css}" rel="stylesheet">
+
+</head>
+<body>
+<!-- HEADER MEJORADO -->
+<header>
+  <div class="container-odontocalendar">
+    <nav class="navbar navbar-expand-lg navbar-odonto">
+      <div class="container-fluid">
+        <div class="navbar-brand-odonto">
+          <div class="logo-odonto">
+            <i class="fas fa-tooth"></i>
+          </div>
+          <span class="clinic-name">Clínica Dental Sonrisa Perfecta</span>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="navbar-actions ms-auto">
+            <div class="d-flex align-items-center flex-wrap">
+              <div class="dropdown me-3 mb-2 mb-md-0">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="quickActionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-bolt me-2"></i>Acciones rápidas
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="quickActionsDropdown">
+                  <li><a th:href="@{/formulariopaciente}" class="dropdown-item"><i class="fas fa-user-plus me-2"></i>Nuevo Paciente</a></li>
+                  <li><a class="dropdown-item" th:href="@{/crud}" data-bs-toggle="modal" data-bs-target="#newAppointmentModal"><i class="fas fa-calendar-plus me-2"></i>Nueva Cita</a></li>
+                  <li><a class="dropdown-item" th:href="@{/pdf}" target="_blank"><i class="fas fa-file-pdf me-2"></i>Generar Reporte</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" th:href="@{#}"><i class="fas fa-chart-line me-2"></i>Estadísticas</a></li>
+                </ul>
+              </div>
+              <button type="button" class="btn btn-danger" >
+                <i th:action="@{/login}" class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- MAIN MEJORADO -->
+<main class="container-odontocalendar">
+  <div class="row">
+    <!-- ASIDE MEJORADO -->
+    <aside class="col-md-3 d-none d-md-block">
+      <div class="aside-card card mb-4">
+        <div class="card-header bg-primary text-white">
+          <i class="fas fa-calendar-alt me-2"></i>Horario
+        </div>
+        <div class="card-body">
+          <p><strong>Lunes-Viernes:</strong><br>8:00 - 23:00</p>
+          <p><strong>Sábados:</strong><br>9:00 - 15:00</p>
+          <p><strong>Domingos:</strong><br>Urgencias</p>
+        </div>
+      </div>
+
+      <div class="aside-card card mb-4">
+        <div class="card-header bg-info text-white">
+          <i class="fas fa-user-md me-2"></i>Odontólogos
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <i class="fas fa-user-md me-2 text-primary"></i>Dra. Martínez
+            </li>
+            <li class="list-group-item">
+              <i class="fas fa-user-md me-2 text-primary"></i>Dr. Rodríguez
+            </li>
+            <li class="list-group-item">
+              <i class="fas fa-user-md me-2 text-primary"></i>Dra. González
+            </li>
+            <li class="list-group-item">
+              <i class="fas fa-user-md me-2 text-primary"></i>Dr. Pérez
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="aside-card card">
+        <div class="card-header bg-success text-white">
+          <i class="fas fa-phone-alt me-2"></i>Contacto Urgencias
+        </div>
+        <div class="card-body">
+          <p><i class="fas fa-phone me-2"></i> +34 600 123 456</p>
+          <p><i class="fas fa-clock me-2"></i> 24 horas</p>
+          <p><i class="fas fa-envelope me-2"></i> urgencias@clinicadental.com</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL MEJORADO -->
+    <div class="col-md-9">
+      <!-- Estadísticas mejoradas -->
+      <div class="row mb-4">
+        <div class="col-6 col-md-3">
+          <div class="stats-card bg-primary">
+            <i class="fas fa-calendar-day"></i>
+            <h5>Citas Hoy</h5>
+            <h3 id="citasHoy">8</h3>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stats-card bg-success">
+            <i class="fas fa-calendar-week"></i>
+            <h5>Citas Semana</h5>
+            <h3 id="citasSemana">42</h3>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stats-card bg-warning">
+            <i class="fas fa-user-clock"></i>
+            <h5>Pendientes</h5>
+            <h3 id="citasPendientes">5</h3>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stats-card bg-info">
+            <i class="fas fa-users"></i>
+            <h5>Pacientes</h5>
+            <h3 id="totalPacientes">127</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtros mejorados -->
+      <div class="filter-section">
+        <div class="row">
+          <div class="col-12">
+            <h6><i class="fas fa-filter me-2"></i>Filtrar Citas</h6>
+          </div>
+          <div class="col-12 col-lg-8">
+            <form class="row g-3">
+              <div class="col-12 col-md-6">
+                <input type="text" class="form-control" placeholder="Buscar paciente..." id="searchPatient" aria-label="Buscar paciente">
+              </div>
+              <div class="col-12 col-md-4">
+                <select class="form-select" id="filterTreatment" aria-label="Filtrar por tratamiento">
+                  <option value="">Todos los tratamientos</option>
+
+                  <!-- Tratamientos Preventivos -->
+                  <option value="" class="treatment-category" disabled>🦷 PREVENTIVOS</option>
+                  <option value="limpieza-dental" class="treatment-option">Limpieza Dental (Profilaxis)</option>
+                  <option value="fluoracion" class="treatment-option">Aplicación de Flúor</option>
+                  <option value="sellantes" class="treatment-option">Sellantes de Fosas y Fisuras</option>
+                  <option value="revision-general" class="treatment-option">Revisión General</option>
+                  <option value="radiografias" class="treatment-option">Radiografías Diagnósticas</option>
+                  <option value="detartraje" class="treatment-option">Detartraje (Eliminación de Sarro)</option>
+
+                  <!-- Tratamientos Restaurativos -->
+                  <option value="" class="treatment-category" disabled>🔧 RESTAURATIVOS</option>
+                  <option value="empaste-composite" class="treatment-option">Empaste de Composite</option>
+                  <option value="empaste-amalgama" class="treatment-option">Empaste de Amalgama</option>
+                  <option value="incrustacion" class="treatment-option">Incrustación (Inlay/Onlay)</option>
+                  <option value="corona-porcelana" class="treatment-option">Corona de Porcelana</option>
+                  <option value="corona-metal" class="treatment-option">Corona de Metal-Porcelana</option>
+                  <option value="corona-zirconio" class="treatment-option">Corona de Zirconio</option>
+                  <option value="puente-fijo" class="treatment-option">Puente Fijo</option>
+
+                  <!-- Endodoncia -->
+                  <option value="" class="treatment-category" disabled>🦷 ENDODONCIA</option>
+                  <option value="endodoncia-unirradicular" class="treatment-option">Endodoncia Unirradicular</option>
+                  <option value="endodoncia-birradicular" class="treatment-option">Endodoncia Birradicular</option>
+                  <option value="endodoncia-multirradicular" class="treatment-option">Endodoncia Multirradicular</option>
+                  <option value="retratamiento-endodoncia" class="treatment-option">Retratamiento de Endodoncia</option>
+                  <option value="apicectomia" class="treatment-option">Apicectomía</option>
+
+                  <!-- Periodoncia -->
+                  <option value="" class="treatment-category" disabled>🍃 PERIODONCIA</option>
+                  <option value="curetaje-cerrado" class="treatment-option">Curetaje Cerrado</option>
+                  <option value="curetaje-abierto" class="treatment-option">Curetaje Abierto (Cirugía Periodontal)</option>
+                  <option value="injerto-encia" class="treatment-option">Injerto de Encía</option>
+                  <option value="alargamiento-corona" class="treatment-option">Alargamiento de Corona</option>
+                  <option value="tratamiento-gingivitis" class="treatment-option">Tratamiento de Gingivitis</option>
+                  <option value="tratamiento-periodontitis" class="treatment-option">Tratamiento de Periodontitis</option>
+
+                  <!-- Cirugía Oral -->
+                  <option value="" class="treatment-category" disabled>⚔️ CIRUGÍA ORAL</option>
+                  <option value="extraccion-simple" class="treatment-option">Extracción Simple</option>
+                  <option value="extraccion-compleja" class="treatment-option">Extracción Compleja</option>
+                  <option value="extraccion-muela-juicio" class="treatment-option">Extracción de Muela del Juicio</option>
+                  <option value="cirugia-quiste" class="treatment-option">Cirugía de Quiste</option>
+                  <option value="biopsia" class="treatment-option">Biopsia Oral</option>
+                  <option value="frenectomia" class="treatment-option">Frenectomía</option>
+
+                  <!-- Implantología -->
+                  <option value="" class="treatment-category" disabled>🔩 IMPLANTOLOGÍA</option>
+                  <option value="implante-unitario" class="treatment-option">Implante Unitario</option>
+                  <option value="implantes-multiples" class="treatment-option">Implantes Múltiples</option>
+                  <option value="elevacion-seno" class="treatment-option">Elevación de Seno Maxilar</option>
+                  <option value="injerto-oseo" class="treatment-option">Injerto Óseo</option>
+                  <option value="carga-inmediata" class="treatment-option">Carga Inmediata</option>
+                  <option value="protesis-sobre-implantes" class="treatment-option">Prótesis sobre Implantes</option>
+
+                  <!-- Prótesis -->
+                  <option value="" class="treatment-category" disabled>🦷 PRÓTESIS</option>
+                  <option value="protesis-completa" class="treatment-option">Prótesis Completa</option>
+                  <option value="protesis-parcial" class="treatment-option">Prótesis Parcial</option>
+                  <option value="protesis-flexible" class="treatment-option">Prótesis Flexible</option>
+                  <option value="reparacion-protesis" class="treatment-option">Reparación de Prótesis</option>
+                  <option value="rebase-protesis" class="treatment-option">Rebase de Prótesis</option>
+
+                  <!-- Ortodoncia -->
+                  <option value="" class="treatment-category" disabled>📐 ORTODONCIA</option>
+                  <option value="brackets-metalicos" class="treatment-option">Brackets Metálicos</option>
+                  <option value="brackets-ceramicos" class="treatment-option">Brackets Cerámicos</option>
+                  <option value="brackets-zafiro" class="treatment-option">Brackets de Zafiro</option>
+                  <option value="ortodoncia-invisible" class="treatment-option">Ortodoncia Invisible (Invisalign)</option>
+                  <option value="ortodoncia-lingual" class="treatment-option">Ortodoncia Lingual</option>
+                  <option value="retenedores" class="treatment-option">Retenedores</option>
+                  <option value="expansion-palatina" class="treatment-option">Expansión Palatina</option>
+
+                  <!-- Odontopediatría -->
+                  <option value="" class="treatment-category" disabled>👶 ODONTOPEDIATRÍA</option>
+                  <option value="revision-infantil" class="treatment-option">Revisión Infantil</option>
+                  <option value="empaste-infantil" class="treatment-option">Empaste Infantil</option>
+                  <option value="pulpotomia" class="treatment-option">Pulpotomía</option>
+                  <option value="corona-pediatrica" class="treatment-option">Corona Pediátrica</option>
+                  <option value="mantenedor-espacio" class="treatment-option">Mantenedor de Espacio</option>
+                  <option value="sedacion-consciente" class="treatment-option">Sedación Consciente</option>
+
+                  <!-- Estética Dental -->
+                  <option value="" class="treatment-category" disabled>✨ ESTÉTICA DENTAL</option>
+                  <option value="blanqueamiento-consultorio" class="treatment-option">Blanqueamiento en Consultorio</option>
+                  <option value="blanqueamiento-casa" class="treatment-option">Blanqueamiento en Casa</option>
+                  <option value="carillas-porcelana" class="treatment-option">Carillas de Porcelana</option>
+                  <option value="carillas-composite" class="treatment-option">Carillas de Composite</option>
+                  <option value="contorneado-dental" class="treatment-option">Contorneado Dental</option>
+                  <option value="cierre-diastemas" class="treatment-option">Cierre de Diastemas</option>
+
+                  <!-- Emergencias -->
+                  <option value="" class="treatment-category" disabled>🚨 EMERGENCIAS</option>
+                  <option value="dolor-dental" class="treatment-option">Dolor Dental Agudo</option>
+                  <option value="traumatismo" class="treatment-option">Traumatismo Dental</option>
+                  <option value="infeccion" class="treatment-option">Infección Dental</option>
+                  <option value="sangrado-encias" class="treatment-option">Sangrado de Encías</option>
+                  <option value="perdida-empaste" class="treatment-option">Pérdida de Empaste</option>
+                </select>
+              </div>
+              <div class="col-12 col-md-2">
+                <button type="button" class="btn btn-primary w-100" onclick="filterCalendar()" aria-label="Buscar">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="col-12 col-lg-4 mt-3 mt-lg-0 d-flex align-items-center justify-content-end">
+            <button class="btn btn-outline-secondary me-2" id="printCalendar">
+              <i class="fas fa-print me-1"></i> Imprimir
+            </button>
+            <button class="btn btn-outline-primary" id="exportCalendar">
+              <i class="fas fa-file-export me-1"></i> Exportar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calendario mejorado -->
+      <div class="calendar-container">
+        <div class="calendar-header">
+          <h4><i class="fas fa-calendar-alt me-2"></i> Calendario de Citas</h4>
+          <div class="calendar-actions">
+
+            </button>
+          </div>
+        </div>
+        <div id="calendar"></div>
+      </div>
+
+      <!-- Leyenda de colores mejorada -->
+      <div class="legend-container">
+        <h6 class="mb-3"><i class="fas fa-palette me-2"></i>Leyenda de Especialidades</h6>
+        <div class="row">
+          <div class="col-6 col-md-3">
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: var(--preventive-color);"></div>
+              <span>Preventivos</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: var(--restorative-color);"></div>
+              <span>Restaurativos</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: var(--endodontic-color);"></div>
+              <span>Endodoncia</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: var(--periodontal-color);"></div>
+              <span>Periodoncia</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: var(--surgical-color);"></div>
+              <span>Cirugía Oral</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: var(--orthodontic-color);"></div>
+              <span>Ortodoncia</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: var(--pediatric-color);"></div>
+              <span>Odontopediatría</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: var(--cosmetic-color);"></div>
+              <span>Estética Dental</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: var(--prosthetic-color);"></div>
+              <span>Prótesis</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: var(--info-color);"></div>
+              <span>Implantología</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: var(--emergency-color);"></div>
+              <span>Emergencias</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Modales mejorados -->
+<!-- Modal para Nueva Cita mejorado -->
+<div class="modal fade" id="newAppointmentModal" tabindex="-1" aria-labelledby="newAppointmentModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="newAppointmentModalLabel"><i class="fas fa-calendar-plus me-2"></i>Nueva Cita</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="newAppointmentForm">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="patientSelect" class="form-label">Paciente</label>
+              <select class="form-select" id="patientSelect" required>
+                <option value="">Seleccionar paciente...</option>
+                <option value="1">María García López</option>
+                <option value="2">Juan Pérez Martín</option>
+                <option value="3">Ana Rodríguez Sánchez</option>
+                <option value="4">Carlos Fernández Torres</option>
+                <option value="5">Lucía González Ruiz</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="treatmentSelect" class="form-label">Tratamiento</label>
+              <select class="form-select" id="treatmentSelect" required>
+                <option value="">Seleccionar tratamiento...</option>
+                <optgroup label="🦷 PREVENTIVOS">
+                  <option value="limpieza-dental">Limpieza Dental (Profilaxis)</option>
+                  <option value="fluoracion">Aplicación de Flúor</option>
+                  <option value="sellantes">Sellantes de Fosas y Fisuras</option>
+                  <option value="revision-general">Revisión General</option>
+                  <option value="radiografias">Radiografías Diagnósticas</option>
+                  <option value="detartraje">Detartraje (Eliminación de Sarro)</option>
+                </optgroup>
+                <optgroup label="🔧 RESTAURATIVOS">
+                  <option value="empaste-composite">Empaste de Composite</option>
+                  <option value="empaste-amalgama">Empaste de Amalgama</option>
+                  <option value="incrustacion">Incrustación (Inlay/Onlay)</option>
+                  <option value="corona-porcelana">Corona de Porcelana</option>
+                  <option value="corona-metal">Corona de Metal-Porcelana</option>
+                  <option value="corona-zirconio">Corona de Zirconio</option>
+                  <option value="puente-fijo">Puente Fijo</option>
+                </optgroup>
+                <optgroup label="🦷 ENDODONCIA">
+                  <option value="endodoncia-unirradicular">Endodoncia Unirradicular</option>
+                  <option value="endodoncia-birradicular">Endodoncia Birradicular</option>
+                  <option value="endodoncia-multirradicular">Endodoncia Multirradicular</option>
+                  <option value="retratamiento-endodoncia">Retratamiento de Endodoncia</option>
+                  <option value="apicectomia">Apicectomía</option>
+                </optgroup>
+                <optgroup label="🍃 PERIODONCIA">
+                  <option value="curetaje-cerrado">Curetaje Cerrado</option>
+                  <option value="curetaje-abierto">Curetaje Abierto (Cirugía Periodontal)</option>
+                  <option value="injerto-encia">Injerto de Encía</option>
+                  <option value="alargamiento-corona">Alargamiento de Corona</option>
+                  <option value="tratamiento-gingivitis">Tratamiento de Gingivitis</option>
+                  <option value="tratamiento-periodontitis">Tratamiento de Periodontitis</option>
+                </optgroup>
+                <optgroup label="⚔️ CIRUGÍA ORAL">
+                  <option value="extraccion-simple">Extracción Simple</option>
+                  <option value="extraccion-compleja">Extracción Compleja</option>
+                  <option value="extraccion-muela-juicio">Extracción de Muela del Juicio</option>
+                  <option value="cirugia-quiste">Cirugía de Quiste</option>
+                  <option value="biopsia">Biopsia Oral</option>
+                  <option value="frenectomia">Frenectomía</option>
+                </optgroup>
+                <optgroup label="🔩 IMPLANTOLOGÍA">
+                  <option value="implante-unitario">Implante Unitario</option>
+                  <option value="implantes-multiples">Implantes Múltiples</option>
+                  <option value="elevacion-seno">Elevación de Seno Maxilar</option>
+                  <option value="injerto-oseo">Injerto Óseo</option>
+                  <option value="carga-inmediata">Carga Inmediata</option>
+                  <option value="protesis-sobre-implantes">Prótesis sobre Implantes</option>
+                </optgroup>
+                <optgroup label="🦷 PRÓTESIS">
+                  <option value="protesis-completa">Prótesis Completa</option>
+                  <option value="protesis-parcial">Prótesis Parcial</option>
+                  <option value="protesis-flexible">Prótesis Flexible</option>
+                  <option value="reparacion-protesis">Reparación de Prótesis</option>
+                  <option value="rebase-protesis">Rebase de Prótesis</option>
+                </optgroup>
+                <optgroup label="📐 ORTODONCIA">
+                  <option value="brackets-metalicos">Brackets Metálicos</option>
+                  <option value="brackets-ceramicos">Brackets Cerámicos</option>
+                  <option value="brackets-zafiro">Brackets de Zafiro</option>
+                  <option value="ortodoncia-invisible">Ortodoncia Invisible (Invisalign)</option>
+                  <option value="ortodoncia-lingual">Ortodoncia Lingual</option>
+                  <option value="retenedores">Retenedores</option>
+                  <option value="expansion-palatina">Expansión Palatina</option>
+                </optgroup>
+                <optgroup label="👶 ODONTOPEDIATRÍA">
+                  <option value="revision-infantil">Revisión Infantil</option>
+                  <option value="empaste-infantil">Empaste Infantil</option>
+                  <option value="pulpotomia">Pulpotomía</option>
+                  <option value="corona-pediatrica">Corona Pediátrica</option>
+                  <option value="mantenedor-espacio">Mantenedor de Espacio</option>
+                  <option value="sedacion-consciente">Sedación Consciente</option>
+                </optgroup>
+                <optgroup label="✨ ESTÉTICA DENTAL">
+                  <option value="blanqueamiento-consultorio">Blanqueamiento en Consultorio</option>
+                  <option value="blanqueamiento-casa">Blanqueamiento en Casa</option>
+                  <option value="carillas-porcelana">Carillas de Porcelana</option>
+                  <option value="carillas-composite">Carillas de Composite</option>
+                  <option value="contorneado-dental">Contorneado Dental</option>
+                  <option value="cierre-diastemas">Cierre de Diastemas</option>
+                </optgroup>
+                <optgroup label="🚨 EMERGENCIAS">
+                  <option value="dolor-dental">Dolor Dental Agudo</option>
+                  <option value="traumatismo">Traumatismo Dental</option>
+                  <option value="infeccion">Infección Dental</option>
+                  <option value="sangrado-encias">Sangrado de Encías</option>
+                  <option value="perdida-empaste">Pérdida de Empaste</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="appointmentDate" class="form-label">Fecha</label>
+              <input type="date" class="form-control" id="appointmentDate" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="appointmentTime" class="form-label">Hora</label>
+              <input type="time" class="form-control" id="appointmentTime" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="appointmentDuration" class="form-label">Duración (minutos)</label>
+              <select class="form-select" id="appointmentDuration">
+                <option value="30">30 minutos</option>
+                <option value="45">45 minutos</option>
+                <option value="60" selected>60 minutos</option>
+                <option value="90">90 minutos</option>
+                <option value="120">120 minutos</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="dentistSelect" class="form-label">Odontólogo</label>
+              <select class="form-select" id="dentistSelect">
+                <option value="1">Dra. Martínez</option>
+                <option value="2">Dr. Rodríguez</option>
+                <option value="3">Dra. González</option>
+                <option value="4">Dr. Pérez</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 mb-3">
+              <label for="appointmentNotes" class="form-label">Notas</label>
+              <textarea class="form-control" id="appointmentNotes" rows="3" placeholder="Observaciones importantes sobre la cita..."></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="sendReminder">
+                <label class="form-check-label" for="sendReminder">
+                  Enviar recordatorio al paciente
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="confirmAppointment">
+                <label class="form-check-label" for="confirmAppointment">
+                  Cita confirmada
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" onclick="saveAppointment()">
+          <i class="fas fa-save me-1"></i> Guardar Cita
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para Detalles de Cita mejorado -->
+<div class="modal fade" id="appointmentDetailsModal" tabindex="-1" aria-labelledby="appointmentDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="appointmentDetailsModalLabel"><i class="fas fa-calendar-check me-2"></i>Detalles de Cita</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="appointmentDetailsContent">
+        <!-- Contenido dinámico -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          <i class="fas fa-times me-1"></i> Cerrar
+        </button>
+        <button type="button" class="btn btn-primary">
+          <i class="fas fa-edit me-1"></i> Editar
+        </button>
+        <button type="button" class="btn btn-danger">
+          <i class="fas fa-calendar-times me-1"></i> Cancelar Cita
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER MEJORADO -->
+<footer>
+  <div class="container-odontocalendar">
+    <div class="row">
+      <div class="col-md-4 mb-4 mb-md-0">
+        <h5><i class="fas fa-tooth me-2"></i>Clínica Dental Sonrisa Perfecta</h5>
+        <p>Especialistas en salud bucodental con más de 15 años de experiencia. Ofrecemos tratamientos personalizados con tecnología de última generación.</p>
+        <div class="social-icons mt-3">
+          <a th:href="@{#}"><i class="fab fa-facebook-f"></i></a>
+          <a th:href="@{#}"><i class="fab fa-twitter"></i></a>
+          <a th:href="@{#}"><i class="fab fa-instagram"></i></a>
+          <a th:href="@{#}"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 mb-md-0">
+        <h5><i class="fas fa-map-marker-alt me-2"></i>Contacto</h5>
+        <p><i class="fas fa-map-pin me-2"></i> Av. Principal 123, Ciudad</p>
+        <p><i class="fas fa-phone me-2"></i> +34 123 456 789</p>
+        <p><i class="fas fa-envelope me-2"></i> info@clinicadental.com</p>
+        <p><i class="fas fa-globe me-2"></i> www.clinicadental.com</p>
+        <p><i class="fas fa-globe me-2"></i> www.clinicadental.com</p>
+      </div>
+      <div class="col-md-4">
+        <h5><i class="fas fa-clock me-2"></i>Horario</h5>
+        <p><strong>Lunes a Viernes:</strong> 8:00 - 23:00</p>
+        <p><strong>Sábados:</strong> 9:00 - 15:00</p>
+        <p><strong>Urgencias:</strong> 24 horas</p>
+        <div class="mt-3">
+          <a th:href="@{/formularioPaciente}" class="btn btn-outline-light btn-sm">
+            <i class="fas fa-calendar-check me-1"></i> Pedir Cita
+          </a>
+        </div>
+      </div>
+    </div>
+    <hr class="mt-4 mb-4">
+    <div class="text-center">
+      <p class="mb-0">&copy; 2023 Clínica Dental Sonrisa Perfecta. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script th:src="@{/js/calendario.js}"></script>
+
+</body>
+</html>

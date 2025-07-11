@@ -1,0 +1,280 @@
+/*
+  Definición de variables CSS personalizadas para colores principales.
+  Estas variables permiten un fácil mantenimiento y consistencia en el diseño.
+*/
+:root {
+    --primary-color: #2d7d9a;       /* Color primario azul verdoso */
+    --secondary-color: #3aa6b9;    /* Color secundario azul más claro */
+    --accent-color: #ffd166;       /* Color de acento amarillo/anaranjado */
+    --dark-color: #333;            /* Color oscuro para texto */
+    --light-color: #f8f9fa;        /* Color claro para fondos */
+}
+
+/*
+  Estilos base para el cuerpo del documento
+  - Fuente Inter como familia principal
+  - Color de texto oscuro
+  - Altura de línea cómoda para lectura
+*/
+body {
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ============ NAVBAR ============ */
+.navbar {
+    padding: 15px 0;               /* Espaciado vertical interno */
+    position: sticky;              /* Barra de navegación pegajosa */
+    top: 0;                        /* Pegada en la parte superior */
+    z-index: 1030;                 /* Asegura que esté por encima de otros elementos */
+}
+
+/* Estilo para el nombre de la marca/logo */
+.brand-name {
+    font-family: 'Montserrat', sans-serif;  /* Fuente diferente para destacar */
+    font-weight: 700;                      /* Negrita */
+    color: var(--primary-color);           /* Usa el color primario definido */
+}
+
+/* Estilo para los enlaces de navegación */
+.nav-link {
+    font-weight: 500;                     /* Peso de fuente medio */
+    padding: 8px 15px !important;         /* Espaciado interno importante */
+}
+
+/* Estilo para el enlace de navegación activo */
+.nav-link.active {
+    color: var(--primary-color) !important;  /* Color primario para enlace activo */
+}
+
+/* ============ HERO SECTION ============ */
+.hero-section {
+    padding: 100px 0;                      /* Espaciado vertical grande */
+    background: linear-gradient(135deg, #f0f8ff, #e6f7ff);  /* Degradado suave azul claro */
+}
+
+/* Estilo para el título principal del hero */
+.hero-section h1 {
+    font-family: 'Montserrat', sans-serif;  /* Fuente Montserrat para destacar */
+    color: var(--dark-color);              /* Color oscuro definido */
+    line-height: 1.2;                      /* Altura de línea ajustada */
+}
+
+/* Estilo para el texto secundario del hero */
+.hero-section .lead {
+    font-size: 1.25rem;                    /* Tamaño de fuente ligeramente mayor */
+    color: #555;                           /* Color gris medio */
+}
+
+/* ============ SERVICES SECTION ============ */
+.services-section {
+    background-color: white;               /* Fondo blanco para la sección */
+}
+
+/* Estilo para títulos de sección */
+.section-title {
+    font-family: 'Montserrat', sans-serif;  /* Fuente Montserrat */
+    font-weight: 700;                      /* Negrita */
+    color: var(--primary-color);           /* Color primario */
+    position: relative;                    /* Posición relativa para el pseudo-elemento */
+    display: inline-block;                 /* Display inline-block para el ancho */
+    padding-bottom: 10px;                  /* Espaciado inferior */
+}
+
+/* Línea decorativa bajo el título de sección */
+.section-title::after {
+    content: "";                           /* Contenido vacío para el pseudo-elemento */
+    position: absolute;                    /* Posición absoluta respecto al título */
+    bottom: 0;                             /* Alineado al fondo */
+    left: 50%;                             /* Centrado horizontalmente */
+    transform: translateX(-50%);           /* Ajuste fino para centrar */
+    width: 50px;                           /* Ancho de la línea */
+    height: 3px;                           /* Grosor de la línea */
+    background-color: var(--accent-color);  /* Color de acento */
+}
+
+/* Estilo para subtítulos de sección */
+.section-subtitle {
+    color: #666;                           /* Color gris */
+    font-size: 1.1rem;                     /* Tamaño de fuente ligeramente mayor */
+    margin-top: 10px;                      /* Espaciado superior */
+}
+
+/* Tarjetas de servicios */
+.service-card {
+    text-align: center;                    /* Texto centrado */
+    padding: 40px 30px;                    /* Espaciado interno aumentado */
+    border-radius: 15px;                   /* Bordes más redondeados */
+    transition: all 0.3s ease;             /* Transición suave para efectos hover */
+    height: 100%;                          /* Altura completa para alinear tarjetas */
+    border: 1px solid #eee;                /* Borde sutil */
+    background: white;                     /* Fondo blanco explícito */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra inicial sutil */
+}
+
+/* Efecto hover para tarjetas de servicio */
+.service-card:hover {
+    transform: translateY(-10px);          /* Levanta la tarjeta */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);  /* Sombra más pronunciada */
+    border-color: var(--primary-color);    /* Borde con color primario */
+}
+
+/* Iconos de servicio */
+.service-icon {
+    width: 80px;                           /* Ancho aumentado */
+    height: 80px;                          /* Altura aumentada */
+    margin: 0 auto 25px;                   /* Margen centrado y espacio abajo */
+    border-radius: 50%;                    /* Forma circular */
+    display: flex;                         /* Flex para centrar contenido */
+    align-items: center;                   /* Centrado vertical */
+    justify-content: center;               /* Centrado horizontal */
+    color: white;                          /* Color de icono blanco */
+    font-size: 2rem;                       /* Tamaño de icono aumentado */
+    transition: all 0.3s ease;             /* Transición suave */
+}
+
+/* Colores específicos para iconos */
+.service-icon.bg-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.service-icon.bg-success {
+    background: linear-gradient(135deg, #28a745, #20c997);
+}
+
+.service-icon.bg-warning {
+    background: linear-gradient(135deg, var(--accent-color), #f39c12);
+}
+
+/* Efecto hover para iconos */
+.service-card:hover .service-icon {
+    transform: scale(1.1);                 /* Aumenta el tamaño */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Sombra para el icono */
+}
+
+/* Títulos de tarjetas de servicio */
+.service-card h3 {
+    margin-bottom: 20px;                   /* Espaciado inferior aumentado */
+    color: var(--primary-color);           /* Color primario */
+    font-family: 'Montserrat', sans-serif; /* Fuente consistente */
+    font-weight: 600;                      /* Peso medio-negrita */
+    font-size: 1.4rem;                     /* Tamaño aumentado */
+}
+
+/* Texto descriptivo de servicios */
+.service-card p {
+    color: #666;                           /* Color gris */
+    font-size: 1rem;                       /* Tamaño estándar */
+    line-height: 1.6;                      /* Altura de línea cómoda */
+    margin-bottom: 0;                      /* Sin margen inferior */
+}
+
+/* ============ TESTIMONIALS ============ */
+/* Tarjetas de testimonios */
+.testimonial-card {
+    background: white;                     /* Fondo blanco */
+    padding: 30px;                         /* Espaciado interno */
+    border-radius: 10px;                   /* Bordes redondeados */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);  /* Sombra sutil */
+    height: 100%;                          /* Altura completa para alinear */
+}
+
+/* Estrellas de calificación */
+.rating {
+    color: #ffc107;                        /* Color amarillo para estrellas */
+}
+
+/* Texto del testimonio */
+.testimonial-text {
+    font-style: italic;                    /* Cursiva para citas */
+    margin-bottom: 20px;                   /* Espaciado inferior */
+}
+
+/* Contenedor del autor del testimonio */
+.testimonial-author {
+    display: flex;                         /* Flex para alinear imagen y texto */
+    align-items: center;                   /* Centrado vertical */
+}
+
+/* Imagen del autor */
+.author-img {
+    width: 50px;                           /* Tamaño fijo */
+    height: 50px;                          /* Tamaño fijo (cuadrado) */
+    border-radius: 50%;                    /* Forma circular */
+    object-fit: cover;                     /* Ajuste de imagen para cubrir */
+    margin-right: 15px;                    /* Espaciado a la derecha */
+}
+
+/* Nombre del autor */
+.testimonial-author h5 {
+    margin-bottom: 5px;                    /* Espaciado inferior pequeño */
+    font-size: 1rem;                       /* Tamaño de fuente */
+}
+
+/* Cargo/descripción del autor */
+.testimonial-author p {
+    font-size: 0.8rem;                     /* Tamaño de fuente pequeño */
+    color: #666;                           /* Color gris */
+    margin-bottom: 0;                      /* Sin margen inferior */
+}
+
+/* ============ FOOTER ============ */
+.footer {
+    background-color: #222;                /* Fondo oscuro */
+}
+
+/* Títulos del footer */
+.footer h5 {
+    color: white;                          /* Texto blanco */
+    margin-bottom: 20px;                   /* Espaciado inferior */
+    font-weight: 600;                      /* Semi-negrita */
+}
+
+/* Enlaces del footer */
+.footer a {
+    text-decoration: none;                 /* Sin subrayado */
+    transition: color 0.3s;                /* Transición suave para hover */
+}
+
+/* Efecto hover para enlaces del footer */
+.footer a:hover {
+    color: var(--accent-color) !important;  /* Color de acento al pasar el mouse */
+}
+
+/* Iconos sociales */
+.social-icons a {
+    display: inline-flex;                  /* Flex inline para alinear */
+    align-items: center;                   /* Centrado vertical */
+    justify-content: center;               /* Centrado horizontal */
+    width: 36px;                           /* Tamaño fijo */
+    height: 36px;                          /* Tamaño fijo (cuadrado) */
+    border-radius: 50%;                    /* Forma circular */
+    background-color: rgba(255, 255, 255, 0.1);  /* Fondo semi-transparente */
+    transition: all 0.3s;                  /* Transición suave para hover */
+}
+
+/* Efecto hover para iconos sociales */
+.social-icons a:hover {
+    background-color: var(--primary-color);  /* Color primario al pasar el mouse */
+    transform: translateY(-3px);           /* Efecto de levantar */
+}
+
+/* ============ MEDIA QUERIES (RESPONSIVE) ============ */
+@media (max-width: 768px) {
+    /* Ajustes para hero section en móviles */
+    .hero-section {
+        padding: 60px 0;                  /* Menor espaciado */
+        text-align: center;                /* Texto centrado */
+    }
+
+    /* Centrar contenido flex en móviles */
+    .hero-section .d-flex {
+        justify-content: center;
+    }
+
+    /* Espaciado entre tarjetas de servicio en móviles */
+    .service-card {
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,272 @@
+/* Definición de variables CSS personalizadas para colores */
+:root {
+    --primary-color: #0077b6;      /* Color primario azul oscuro */
+    --secondary-color: #00b4d8;    /* Color secundario azul claro */
+    --accent-color: #90e0ef;       /* Color de acento azul muy claro */
+    --light-bg: #f8f9fa;          /* Color de fondo claro */
+    --error-color: #c9184a;       /* Color para errores (rojo) */
+    --success-color: #2d6a4f;     /* Color para éxito (verde) */
+}
+
+/* Estilos generales del cuerpo de la página */
+body {
+    background: linear-gradient(135deg, #e0f7fa, #b2ebf2); /* Fondo con gradiente */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente principal */
+    min-height: 100vh;            /* Altura mínima de toda la ventana */
+    display: flex;                /* Usa flexbox para centrar contenido */
+    justify-content: center;      /* Centra horizontalmente */
+    align-items: center;          /* Centra verticalmente */
+    margin: 0;                   /* Elimina márgenes por defecto */
+    padding: 20px;               /* Espaciado interno */
+}
+
+/* Contenedor principal del formulario */
+.container {
+    max-width: 500px;            /* Ancho máximo del contenedor */
+    width: 100%;                 /* Ancho relativo al contenedor padre */
+    animation: fadeIn 0.8s ease-in-out; /* Animación de entrada */
+    position: relative;          /* Posicionamiento relativo para elementos hijos */
+    z-index: 1;                  /* Nivel de apilamiento */
+}
+
+/* Efecto de burbuja decorativa (parte superior izquierda) */
+.container::before {
+    content: "";                 /* Necesario para pseudo-elementos */
+    position: absolute;          /* Posicionamiento absoluto */
+    width: 200px;                /* Ancho de la burbuja */
+    height: 200px;               /* Altura de la burbuja */
+    background: rgba(144, 224, 239, 0.3); /* Color con transparencia */
+    border-radius: 50%;          /* Forma circular */
+    top: -50px;                  /* Posición desde arriba */
+    left: -50px;                 /* Posición desde la izquierda */
+    z-index: -1;                 /* Detrás del contenedor */
+}
+
+/* Efecto de burbuja decorativa (parte inferior derecha) */
+.container::after {
+    content: "";                 /* Necesario para pseudo-elementos */
+    position: absolute;          /* Posicionamiento absoluto */
+    width: 150px;                /* Ancho de la burbuja */
+    height: 150px;               /* Altura de la burbuja */
+    background: rgba(0, 180, 216, 0.2); /* Color con transparencia */
+    border-radius: 50%;          /* Forma circular */
+    bottom: -30px;               /* Posición desde abajo */
+    right: -30px;                /* Posición desde la derecha */
+    z-index: -1;                 /* Detrás del contenedor */
+}
+
+/* Estilos para el título principal */
+h1 {
+    color: var(--primary-color); /* Usa el color primario */
+    margin-bottom: 2rem;         /* Espacio inferior */
+    font-weight: 700;            /* Grosor de la fuente */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Sombra sutil */
+    position: relative;          /* Para el pseudo-elemento */
+    padding-bottom: 15px;       /* Espacio para la línea decorativa */
+}
+
+/* Línea decorativa bajo el título */
+h1::after {
+    content: "";                 /* Necesario para pseudo-elementos */
+    position: absolute;          /* Posicionamiento absoluto */
+    bottom: 0;                   /* Alineado al fondo */
+    left: 50%;                   /* Centrado horizontalmente */
+    transform: translateX(-50%); /* Ajuste fino para centrado */
+    width: 80px;                /* Ancho de la línea */
+    height: 4px;                /* Altura de la línea */
+    background: var(--secondary-color); /* Color de la línea */
+    border-radius: 2px;          /* Bordes redondeados */
+}
+
+/* Estilos para el contenedor del formulario */
+.form-control {
+    border-radius: 15px;         /* Bordes redondeados */
+    box-shadow: 0 15px 30px rgba(0, 119, 182, 0.15); /* Sombra */
+    border: none;                /* Sin borde */
+    background-color: white;     /* Fondo blanco */
+    padding: 2.5rem !important;  /* Espaciado interno (importante para sobrescribir) */
+    position: relative;          /* Para pseudo-elementos */
+    overflow: hidden;            /* Oculta lo que salga del contenedor */
+}
+
+/* Barra decorativa superior del formulario */
+.form-control::before {
+    content: "";                 /* Necesario para pseudo-elementos */
+    position: absolute;          /* Posicionamiento absoluto */
+    top: 0;                      /* Alineado arriba */
+    left: 0;                     /* Alineado a la izquierda */
+    width: 100%;                 /* Ancho completo */
+    height: 5px;                 /* Altura de la barra */
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); /* Gradiente */
+}
+
+/* Estilos para los campos de texto y contraseña */
+.form-control input[type="text"],
+.form-control input[type="password"] {
+    border: 2px solid #e0f7fa;   /* Borde sutil */
+    border-radius: 8px;          /* Bordes redondeados */
+    padding: 12px 15px;          /* Espaciado interno */
+    transition: all 0.3s;        /* Transición suave para efectos */
+    background-color: var(--light-bg); /* Color de fondo */
+    font-size: 0.95rem;          /* Tamaño de fuente */
+}
+
+/* Estilos cuando los campos están enfocados */
+.form-control input[type="text"]:focus,
+.form-control input[type="password"]:focus {
+    border-color: var(--secondary-color); /* Cambia color del borde */
+    box-shadow: 0 0 0 0.25rem rgba(0, 180, 216, 0.15); /* Sombra al enfocar */
+    background-color: white;     /* Fondo blanco */
+    outline: none;               /* Elimina contorno por defecto */
+}
+
+/* Estilos para las etiquetas */
+label {
+    color: var(--primary-color); /* Color primario */
+    font-weight: 600;            /* Grosor de fuente */
+    margin-bottom: 0.5rem;       /* Espacio inferior */
+    display: block;              /* Hace que ocupe toda la línea */
+    font-size: 0.95rem;          /* Tamaño de fuente */
+}
+
+/* Estilo para campos válidos */
+.is-valid {
+    border-color: #28a745 !important; /* Borde verde */
+    /* Icono de check SVG como fondo */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat; /* No repetir el icono */
+    background-position: right calc(0.375em + 0.1875rem) center; /* Posición */
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); /* Tamaño */
+}
+
+/* Estilo para campos inválidos */
+.is-invalid {
+    border-color: #dc3545 !important; /* Borde rojo */
+    /* Icono de exclamación SVG como fondo */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat; /* No repetir el icono */
+    background-position: right calc(0.375em + 0.1875rem) center; /* Posición */
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); /* Tamaño */
+}
+
+/* Mensaje de feedback para errores */
+.invalid-feedback {
+    display: none;               /* Oculto por defecto */
+    width: 100%;                /* Ancho completo */
+    margin-top: 0.25rem;        /* Margen superior */
+    font-size: 0.875em;         /* Tamaño de fuente */
+    color: #dc3545;             /* Color rojo */
+}
+
+/* Muestra el mensaje de error cuando el campo es inválido */
+.is-invalid ~ .invalid-feedback {
+    display: block;              /* Muestra el mensaje */
+}
+
+/* Ajuste para el spinner de carga */
+.spinner-border {
+    vertical-align: text-bottom; /* Alineación vertical */
+}
+
+/* Estilos para el botón primario */
+.btn-primary {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color)); /* Gradiente */
+    border: none;                /* Sin borde */
+    border-radius: 8px;          /* Bordes redondeados */
+    padding: 12px 30px;          /* Espaciado interno */
+    font-weight: 600;            /* Grosor de fuente */
+    letter-spacing: 0.5px;       /* Espaciado entre letras */
+    transition: all 0.3s;        /* Transición suave */
+    margin-top: 1.5rem;          /* Margen superior */
+    text-transform: uppercase;   /* Texto en mayúsculas */
+    font-size: 0.9rem;           /* Tamaño de fuente */
+    box-shadow: 0 4px 6px rgba(0, 119, 182, 0.1); /* Sombra sutil */
+    width: 100%;                 /* Ancho completo */
+    max-width: 200px;            /* Ancho máximo */
+}
+
+/* Efecto hover para el botón */
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Invierte gradiente */
+    transform: translateY(-3px);  /* Efecto de levantar */
+    box-shadow: 0 7px 14px rgba(0, 119, 182, 0.2); /* Sombra más pronunciada */
+}
+
+/* Estilos base para alertas */
+.alert {
+    border-radius: 8px;          /* Bordes redondeados */
+    margin-top: 1.5rem;          /* Margen superior */
+    padding: 15px;               /* Espaciado interno */
+    display: none;               /* Oculto por defecto */
+    border-left: 5px solid;      /* Borde lateral */
+    animation: slideIn 0.3s ease-out forwards; /* Animación de entrada */
+}
+
+/* Estilo para alertas de error */
+.alert-danger {
+    background-color: #ffebee;    /* Fondo rojo claro */
+    border-color: var(--error-color); /* Borde rojo */
+    color: var(--error-color);    /* Texto rojo */
+}
+
+/* Estilo para alertas de éxito */
+.alert-success {
+    background-color: #e8f5e9;    /* Fondo verde claro */
+    border-color: var(--success-color); /* Borde verde */
+    color: var(--success-color);  /* Texto verde */
+}
+
+/* Animación de aparición gradual */
+@keyframes fadeIn {
+    from {
+        opacity: 0;              /* Inicia transparente */
+        transform: translateY(20px); /* Inicia ligeramente abajo */
+    }
+    to {
+        opacity: 1;              /* Termina completamente visible */
+        transform: translateY(0); /* Termina en posición normal */
+    }
+}
+
+/* Animación de deslizamiento desde la izquierda */
+@keyframes slideIn {
+    from {
+        opacity: 0;              /* Inicia transparente */
+        transform: translateX(-20px); /* Inicia ligeramente a la izquierda */
+    }
+    to {
+        opacity: 1;              /* Termina completamente visible */
+        transform: translateX(0); /* Termina en posición normal */
+    }
+}
+
+/* Estilo para el ícono decorativo */
+.login-icon {
+    width: 80px;                 /* Ancho del ícono */
+    height: 80px;                /* Altura del ícono */
+    margin: 0 auto 20px;         /* Margen centrado */
+    display: block;              /* Para que el margen auto funcione */
+    fill: var(--secondary-color); /* Color del ícono */
+}
+
+/* Media queries para diseño responsive */
+@media (max-width: 576px) {
+    .form-control {
+        padding: 1.8rem !important; /* Menos padding en móviles */
+    }
+
+    h1 {
+        font-size: 1.8rem;       /* Tamaño de fuente más pequeño */
+    }
+
+    /* Oculta las burbujas decorativas en móviles */
+    .container::before,
+    .container::after {
+        display: none;
+    }
+
+    /* Botón ocupa todo el ancho en móviles */
+    .btn-primary {
+        max-width: none;
+    }
+}

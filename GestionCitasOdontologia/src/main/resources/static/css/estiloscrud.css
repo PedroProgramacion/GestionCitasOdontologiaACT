@@ -1,0 +1,316 @@
+/*
+ * Variables CSS personalizadas para mantener consistencia en los estilos
+ * Estas variables pueden ser reutilizadas en todo el documento
+ */
+:root {
+    --primary-color: #2d7d9a;       /* Color primario azul verdoso */
+    --secondary-color: #3aa6b9;     /* Color secundario azul claro */
+    --accent-color: #ffd166;        /* Color de acento amarillo/anaranjado */
+    --dark-color: #333333;          /* Color oscuro para texto principal */
+    --light-color: #f8f9fa;         /* Color claro para fondos */
+    --error-color: #dc3545;         /* Rojo para errores */
+    --success-color: #28a745;       /* Verde para operaciones exitosas */
+    --warning-color: #ffc107;       /* Amarillo para advertencias */
+    --border-radius: 8px;           /* Radio de borde estándar */
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra estándar */
+    --transition: all 0.3s ease;    /* Transición suave estándar */
+}
+
+/*
+ * Estilos base para el cuerpo del documento
+ * Define la apariencia fundamental de toda la página
+ */
+body {
+    font-family: 'Inter', sans-serif;  /* Fuente principal legible */
+    background-color: #f5f9fa;         /* Fondo claro azulado muy suave */
+    color: var(--dark-color);          /* Color de texto principal */
+    line-height: 1.6;                  /* Espaciado entre líneas para mejor lectura */
+    padding: 20px;                     /* Espaciado alrededor del contenido */
+    margin: 0;                         /* Elimina márgenes por defecto */
+}
+
+/*
+ * Contenedor principal que centra y organiza el contenido
+ * Proporciona estructura y límites al diseño
+ */
+.container {
+    max-width: 1200px;                 /* Ancho máximo para pantallas grandes */
+    margin: 0 auto;                    /* Centrado horizontal */
+    background-color: white;           /* Fondo blanco para el contenido */
+    padding: 30px;                     /* Espaciado interno generoso */
+    border-radius: var(--border-radius); /* Esquinas redondeadas */
+    box-shadow: var(--box-shadow);     /* Sombra sutil para efecto de elevación */
+}
+
+/*
+ * Estilos para la barra de navegación superior
+ * Contiene el logo y acciones principales
+ */
+.header-nav {
+    display: flex;                     /* Diseño flexible */
+    justify-content: space-between;    /* Espacio entre logo y acciones */
+    align-items: center;               /* Centrado vertical */
+    padding: 1rem 0;                  /* Espaciado vertical */
+    margin-bottom: 2rem;              /* Separación del contenido siguiente */
+    border-bottom: 1px solid #e0e0e0; /* Línea divisoria sutil */
+}
+
+/*
+ * Contenedor del logo para mantener proporciones
+ */
+.logo-container {
+    width: 60px;                      /* Ancho fijo */
+    height: 60px;                     /* Alto fijo */
+    display: flex;                     /* Para centrar la imagen */
+    align-items: center;              /* Centrado vertical */
+    justify-content: center;          /* Centrado horizontal */
+}
+
+/*
+ * Estilos para la imagen del logo
+ */
+.logo {
+    max-width: 100%;                  /* Ajuste al contenedor */
+    max-height: 100%;                 /* Ajuste al contenedor */
+    object-fit: contain;              /* Mantiene proporciones */
+}
+
+/*
+ * Contenedor para los botones de acción
+ */
+.nav-actions {
+    display: flex;                    /* Diseño flexible */
+    gap: 1rem;                       /* Espacio entre elementos */
+    align-items: center;             /* Centrado vertical */
+}
+
+/*
+ * Estilos para botones de navegación
+ */
+.nav-btn {
+    display: inline-flex;            /* Para alinear icono y texto */
+    align-items: center;             /* Centrado vertical */
+    justify-content: center;         /* Centrado horizontal */
+    padding: 0.5rem;                 /* Espaciado interno */
+    border-radius: 50%;              /* Forma circular */
+    background-color: var(--light-color); /* Fondo claro */
+    color: var(--primary-color);     /* Color principal */
+    transition: var(--transition);   /* Transición suave */
+    width: 40px;                     /* Tamaño fijo */
+    height: 40px;                    /* Tamaño fijo */
+}
+
+/*
+ * Efectos hover para botones de navegación
+ */
+.nav-btn:hover {
+    background-color: var(--primary-color); /* Fondo color principal */
+    color: white;                    /* Texto blanco */
+    transform: translateY(-2px);     /* Efecto de levitación */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/*
+ * Estilos para el botón de cerrar sesión
+ */
+.btn-logout {
+    background: none;                /* Sin fondo */
+    border: 1px solid var(--error-color); /* Borde rojo */
+    color: var(--error-color);       /* Texto rojo */
+    padding: 0.375rem 0.75rem;      /* Espaciado interno */
+    border-radius: var(--border-radius); /* Esquinas redondeadas */
+    cursor: pointer;                 /* Cursor tipo puntero */
+    transition: var(--transition);   /* Transición suave */
+    display: inline-flex;            /* Para alinear icono y texto */
+    align-items: center;             /* Centrado vertical */
+    gap: 0.5rem;                    /* Espacio entre icono y texto */
+}
+
+/*
+ * Efectos hover para botón de cerrar sesión
+ */
+.btn-logout:hover {
+    background-color: var(--error-color); /* Fondo rojo */
+    color: white;                    /* Texto blanco */
+}
+
+/*
+ * Estilos para los títulos principales
+ */
+h1 {
+    color: var(--primary-color);     /* Color principal */
+    font-family: 'Montserrat', sans-serif; /* Fuente diferente para títulos */
+    font-weight: 700;               /* Negrita */
+    margin-bottom: 30px;            /* Espaciado inferior */
+    text-align: center;             /* Centrado */
+    position: relative;             /* Para pseudo-elemento */
+    padding-bottom: 15px;           /* Espacio para la línea decorativa */
+}
+
+/*
+ * Línea decorativa bajo el título principal
+ */
+h1::after {
+    content: "";                    /* Necesario para pseudo-elemento */
+    position: absolute;             /* Posicionamiento absoluto */
+    bottom: 0;                      /* Alineado al fondo */
+    left: 50%;                      /* Centrado horizontal */
+    transform: translateX(-50%);    /* Ajuste fino de centrado */
+    width: 80px;                    /* Ancho de la línea */
+    height: 4px;                    /* Grosor de la línea */
+    background-color: var(--accent-color); /* Color de acento */
+    border-radius: 2px;             /* Esquinas ligeramente redondeadas */
+}
+
+/*
+ * Sección de controles superiores (botones y búsqueda)
+ */
+.controls-section {
+    display: flex;                  /* Diseño flexible */
+    flex-wrap: wrap;                /* Permite ajuste en pantallas pequeñas */
+    align-items: center;            /* Centrado vertical */
+    gap: 1rem;                     /* Espacio entre elementos */
+    margin-bottom: 1.5rem;         /* Separación de la tabla */
+}
+
+/*
+ * Estilos para el contenedor de búsqueda
+ */
+.search-container {
+    flex-grow: 1;                   /* Ocupa espacio disponible */
+    max-width: 400px;               /* Ancho máximo */
+}
+
+/*
+ * Estilos para la tabla responsiva
+ */
+.table-responsive {
+    overflow-x: auto;               /* Scroll horizontal en pantallas pequeñas */
+    border-radius: var(--border-radius); /* Esquinas redondeadas */
+    box-shadow: var(--box-shadow);  /* Sombra sutil */
+    background-color: white;        /* Fondo blanco */
+}
+
+/*
+ * Estilos base para la tabla
+ */
+.table {
+    width: 100%;                   /* Ocupa todo el ancho */
+    margin-bottom: 0;              /* Elimina margen inferior por defecto */
+    color: var(--dark-color);      /* Color de texto */
+    border-collapse: collapse;     /* Bordes unificados */
+}
+
+/*
+ * Estilos para el encabezado de la tabla
+ */
+.table-dark {
+    background-color: var(--primary-color); /* Fondo color principal */
+    color: white;                  /* Texto blanco */
+}
+
+/*
+ * Estilos para las celdas del encabezado
+ */
+.table-dark th {
+    padding: 1rem;                 /* Espaciado interno */
+    text-align: left;              /* Alineación izquierda */
+    font-weight: 600;              /* Negrita */
+}
+
+/*
+ * Estilos para las filas de la tabla
+ */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.02); /* Fondo alterno muy sutil */
+}
+
+/*
+ * Efectos hover para filas de la tabla
+ */
+.table-hover tbody tr:hover {
+    background-color: rgba(58, 166, 185, 0.1); /* Fondo azulado claro al pasar mouse */
+}
+
+/*
+ * Estilos para las celdas de la tabla
+ */
+.table td {
+    padding: 0.75rem 1rem;         /* Espaciado interno */
+    vertical-align: middle;        /* Centrado vertical */
+    border-top: 1px solid #e0e0e0; /* Borde superior sutil */
+}
+
+/*
+ * Estilos para botones de acción en la tabla
+ */
+.btn-sm {
+    padding: 0.25rem 0.5rem;       /* Espaciado interno pequeño */
+    font-size: 0.875rem;           /* Tamaño de fuente reducido */
+    border-radius: 4px;            /* Esquinas ligeramente redondeadas */
+    margin-right: 0.5rem;          /* Espacio entre botones */
+}
+
+/*
+ * Estilos para el mensaje de "no hay resultados"
+ */
+.text-center {
+    text-align: center;            /* Centrado horizontal */
+    padding: 1.5rem;               /* Espaciado interno */
+    color: #6c757d;                /* Color de texto gris */
+}
+
+/*
+ * Media queries para diseño responsivo
+ * Ajustes para pantallas más pequeñas
+ */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;             /* Espaciado interno reducido */
+    }
+
+    .header-nav {
+        flex-direction: column;    /* Apila elementos verticalmente */
+        gap: 1rem;                 /* Espacio entre elementos */
+    }
+
+    .controls-section {
+        flex-direction: column;    /* Apila elementos verticalmente */
+        align-items: stretch;      /* Ocupa todo el ancho */
+    }
+
+    .search-container {
+        max-width: 100%;           /* Ancho completo */
+    }
+
+    .table td, .table th {
+        padding: 0.5rem;           /* Espaciado interno reducido */
+    }
+
+    .btn-sm {
+        display: block;            /* Botones en bloque */
+        width: 100%;              /* Ancho completo */
+        margin-bottom: 0.5rem;    /* Espacio inferior */
+    }
+}
+
+/*
+ * Animación de fadeIn para transiciones suaves
+ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;                /* Inicio transparente */
+        transform: translateY(10px); /* Desplazamiento inicial */
+    }
+    to {
+        opacity: 1;                /* Opacidad completa */
+        transform: translateY(0);  /* Posición final */
+    }
+}
+
+/*
+ * Aplicación de la animación al contenedor principal
+ */
+.container {
+    animation: fadeIn 0.5s ease-out; /* Duración y easing */
+}

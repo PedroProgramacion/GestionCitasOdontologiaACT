@@ -1,0 +1,211 @@
+/* 
+ * Variables de color para consultorio odontológico
+ * Paleta cuidadosamente seleccionada para transmitir profesionalismo médico
+ */
+:root {
+    --primary-color: #2d7d9a;       /* Azul principal que evoca confianza y seriedad */
+    --secondary-color: #3aa6b9;     /* Azul secundario más claro para elementos interactivos */
+    --accent-color: #ffd166;        /* Amarillo/anaranjado cálido para acentos y llamadas a acción */
+    --dark-color: #333;             /* Color oscuro para texto principal con óptimo contraste */
+    --light-color: #f8f9fa;         /* Color de fondo claro para áreas secundarias */
+    --error-color: #dc3545;         /* Rojo estándar para errores y alertas (alta visibilidad) */
+    --success-color: #28a745;       /* Verde para indicar acciones exitosas */
+    --dental-blue: #e0f7fa;         /* Azul dental muy claro para fondo principal */
+    --white: #ffffff;               /* Blanco puro para maximizar contraste */
+}
+
+/* 
+ * Estilos generales del documento
+ * Configuración base para toda la aplicación
+ */
+body {
+    font-family: 'Inter', sans-serif;  /* Fuente moderna optimizada para legibilidad */
+    background-color: var(--dental-blue); /* Fondo principal suave */
+    color: var(--dark-color);          /* Color de texto principal */
+    line-height: 1.6;                 /* Interlineado óptimo para lectura */
+    padding: 20px;                    /* Espaciado exterior general */
+    background-image: linear-gradient(to bottom, var(--white), var(--dental-blue)); /* Degradado sutil para profundidad visual */
+    min-height: 100vh;                /* Garantiza que el body ocupe toda la altura visible */
+}
+
+/* 
+ * Contenedor principal del formulario
+ * Diseñado para destacar sobre el fondo con sombra y bordes redondeados
+ */
+.form-sigin {
+    max-width: 800px;                /* Ancho máximo para óptima legibilidad */
+    margin: 40px auto;               /* Centrado horizontal con margen vertical */
+    background-color: var(--white);  /* Fondo blanco puro para contraste */
+    padding: 40px;                   /* Generoso espaciado interno */
+    border-radius: 12px;             /* Bordes redondeados modernos */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Sombra sutil para efecto de elevación */
+    animation: fadeIn 0.6s ease-out; /* Animación de entrada suave */
+    border: 1px solid rgba(58, 166, 185, 0.1); /* Borde sutil con transparencia */
+}
+
+/* 
+ * Encabezado del formulario
+ * Diseño distintivo con subrayado decorativo
+ */
+.form-sigin h1 {
+    color: var(--primary-color);     /* Color principal para el título */
+    font-family: 'Montserrat', sans-serif; /* Fuente diferente para jerarquía visual */
+    font-weight: 700;                /* Peso bold para énfasis */
+    margin-bottom: 40px;             /* Espaciado inferior generoso */
+    text-align: center;              /* Centrado para equilibrio visual */
+    position: relative;              /* Contexto para pseudo-elemento */
+    padding-bottom: 15px;            /* Espacio para el subrayado decorativo */
+}
+
+/* 
+ * Subrayado decorativo bajo el título principal
+ * Elemento visual que refuerza la identidad de marca
+ */
+.form-sigin h1::after {
+    content: "";                     /* Requerido para pseudo-elementos */
+    position: absolute;              /* Posicionamiento preciso */
+    bottom: 0;                       /* Alineado al fondo del título */
+    left: 50%;                       /* Centrado horizontalmente */
+    transform: translateX(-50%);     /* Ajuste fino para centrado perfecto */
+    width: 100px;                    /* Ancho controlado */
+    height: 4px;                     /* Grosor del subrayado */
+    background-color: var(--accent-color); /* Color de acento */
+    border-radius: 2px;              /* Bordes ligeramente redondeados */
+}
+
+/* 
+ * Estilos para etiquetas de formulario
+ * Diseño claro y accesible
+ */
+.form-sigin .form-label {
+    font-weight: 600;                /* Peso semibold para mejor jerarquía */
+    color: var(--primary-color);     /* Color principal para consistencia */
+    margin-bottom: 8px;              /* Espaciado inferior controlado */
+    display: block;                  /* Comportamiento en bloque para mejor espaciado */
+}
+
+/* 
+ * Campos de formulario base
+ * Estilos consistentes para todos los inputs
+ */
+.form-sigin .form-control {
+    padding: 12px 15px;              /* Espaciado interno cómodo */
+    border: 2px solid #e0f2f7;       /* Borde sutil azulado */
+    border-radius: 8px;              /* Esquinas redondeadas */
+    transition: all 0.3s;            /* Transición suave para interacciones */
+    background-color: #f8fafb;       /* Fondo ligeramente coloreado */
+    font-size: 16px;                 /* Tamaño de fuente legible */
+}
+
+/* 
+ * Estado focus para campos de formulario
+ * Mejora la accesibilidad y experiencia de usuario
+ */
+.form-sigin .form-control:focus {
+    border-color: var(--secondary-color); /* Borde más visible al enfocar */
+    box-shadow: 0 0 0 0.25rem rgba(58, 166, 185, 0.2); /* Sombra de enfoque sutil */
+    background-color: var(--white);  /* Fondo blanco al enfocar */
+}
+
+/* 
+ * Mensajes de validación de campos
+ * Feedback claro para el usuario
+ */
+.form-sigin .invalid-feedback {
+    color: var(--error-color);       /* Color rojo para errores */
+    font-size: 0.85rem;              /* Tamaño ligeramente reducido */
+    margin-top: 5px;                 /* Espaciado superior mínimo */
+    display: block;                  /* Asegura que ocupe su propia línea */
+}
+
+/* 
+ * Estado de campo inválido
+ * Indicación visual clara de errores
+ */
+.form-sigin .is-invalid {
+    border-color: var(--error-color); /* Borde rojo para error */
+    /* Icono SVG de error como background */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;     /* Evita repetición del icono */
+    background-position: right calc(0.375em + 0.1875rem) center; /* Posición precisa */
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); /* Tamaño controlado */
+}
+
+/* 
+ * Botón principal de acción
+ * Diseño prominente para la acción principal
+ */
+.form-sigin .btn-primary {
+    background-color: var(--primary-color); /* Color principal */
+    border-color: var(--primary-color);     /* Borde consistente */
+    padding: 12px 30px;            /* Espaciado interno generoso */
+    font-weight: 600;              /* Peso semibold para énfasis */
+    border-radius: 8px;            /* Bordes redondeados */
+    letter-spacing: 0.5px;         /* Espaciado entre letras para mejor legibilidad */
+    transition: all 0.3s;          /* Transición suave para hover */
+    margin-top: 20px;              /* Espaciado superior */
+    font-size: 16px;               /* Tamaño de fuente legible */
+}
+
+/* 
+ * Efecto hover para botón principal
+ * Feedback visual al interactuar
+ */
+.form-sigin .btn-primary:hover {
+    background-color: #246a83;      /* Color más oscuro al pasar mouse */
+    border-color: #1f6077;         /* Borde más oscuro para consistencia */
+    transform: translateY(-2px);   /* Efecto de elevación sutil */
+    box-shadow: 0 5px 15px rgba(45, 125, 154, 0.3); /* Sombra para sensación de profundidad */
+}
+
+/* 
+ * Mensajes de error del servidor
+ * Alertas para errores no relacionados con validación de campos
+ */
+.form-sigin .alert-danger {
+    background-color: rgba(220, 53, 69, 0.1); /* Fondo rojo muy suave */
+    border-color: rgba(220, 53, 69, 0.2);     /* Borde rojo sutil */
+    color: var(--error-color);     /* Texto rojo para consistencia */
+    border-radius: 8px;            /* Bordes redondeados */
+    padding: 15px;                 /* Espaciado interno adecuado */
+    margin-top: 20px;              /* Espaciado superior */
+}
+
+/* 
+ * Animación de entrada del formulario
+ * Efecto sutil para mejorar la experiencia de usuario
+ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;                /* Inicio transparente */
+        transform: translateY(20px); /* Posición inicial ligeramente abajo */
+    }
+    to {
+        opacity: 1;                /* Opacidad completa */
+        transform: translateY(0);  /* Posición final normal */
+    }
+}
+
+/* 
+ * Media queries para diseño responsive
+ * Adaptación a dispositivos móviles y tablets
+ */
+@media (max-width: 768px) {
+    /* Ajustes para pantallas pequeñas */
+    .form-sigin {
+        padding: 30px 20px;        /* Menor espaciado interno */
+        margin: 20px auto;         /* Margen reducido */
+    }
+
+    /* Título más pequeño en móviles */
+    .form-sigin h1 {
+        font-size: 24px;           /* Tamaño reducido */
+        margin-bottom: 30px;       /* Espaciado inferior ajustado */
+    }
+
+    /* Botón de ancho completo en móviles */
+    .form-sigin .btn-primary {
+        width: 100%;               /* Ocupa todo el ancho disponible */
+        padding: 12px;             /* Padding consistente */
+    }
+}

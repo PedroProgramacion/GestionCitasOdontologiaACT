@@ -1,0 +1,1030 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700&display=swap');
+:root {
+    --primary-color: #2d7d9a;
+    --secondary-color: #3aa6b9;
+    --accent-color: #ffd166;
+    --light-bg: #f8f9fa;
+    --dark-text: #333;
+    --error-color: #dc3545;
+    --success-color: #28a745;
+    --warning-color: #fd7e14;
+    --info-color: #17a2b8;
+    --preventive-color: #20c997;
+    --restorative-color: #6f42c1;
+    --surgical-color: #e83e8c;
+    --cosmetic-color: #fd7e14;
+    --pediatric-color: #17a2b8;
+    --periodontal-color: #dc3545;
+    --endodontic-color: #6610f2;
+    --orthodontic-color: #ffc107;
+    --prosthetic-color: #495057;
+    --emergency-color: #dc3545;
+    --calendar-bg: #ffffff;
+    --calendar-border: #e0e0e0;
+    --day-hover-bg: rgba(230, 230, 230, 0.7);
+    --today-bg: rgba(45, 125, 154, 0.1);
+    --calendar-header-bg: #f8f9fa;
+}
+
+html, body {
+    height: 100%;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f8ff;
+    color: var(--dark-text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container-odontocalendar {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+    flex: 1;
+}
+
+/* Barra de navegación mejorada */
+.navbar-odonto {
+    background-color: white;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    border-radius: 12px;
+    padding: 15px 25px;
+    transition: all 0.3s ease;
+}
+
+.navbar-odonto:hover {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.navbar-brand-odonto {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand-odonto:hover {
+    transform: translateX(5px);
+}
+
+.logo-odonto {
+    height: 50px;
+    width: 50px;
+    margin-right: 15px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 12px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 3px 10px rgba(45, 125, 154, 0.3);
+}
+
+.clinic-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    letter-spacing: 0.5px;
+}
+
+.navbar-toggler {
+    border: none;
+    box-shadow: none !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2845, 125, 154, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Estadísticas mejoradas */
+.stats-card {
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    color: white;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.stats-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: rgba(255,255,255,0.3);
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.stats-card i {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.stats-card h5 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.stats-card h3 {
+    font-size: 2rem;
+    margin-bottom: 0;
+    font-weight: 700;
+}
+
+.bg-primary { background-color: var(--primary-color) !important; }
+.bg-success { background-color: var(--success-color) !important; }
+.bg-warning { background-color: var(--warning-color) !important; }
+.bg-info { background-color: var(--info-color) !important; }
+
+/* Filtros mejorados */
+.filter-section {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.filter-section h6 {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.form-control, .form-select {
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(45, 125, 154, 0.25);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #246a83;
+    border-color: #246a83;
+    transform: translateY(-2px);
+}
+
+/* Calendario mejorado */
+.calendar-container {
+    background: var(--calendar-bg);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--calendar-border);
+}
+
+.calendar-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+    var(--preventive-color) 0%,
+    var(--restorative-color) 20%,
+    var(--endodontic-color) 40%,
+    var(--periodontal-color) 60%,
+    var(--surgical-color) 80%,
+    var(--orthodontic-color) 100%);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-header h4 {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin: 0;
+}
+
+.calendar-actions .btn {
+    margin-left: 10px;
+}
+
+#calendar {
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+}
+
+.fc {
+    font-family: 'Inter', sans-serif;
+}
+
+.fc-toolbar-title {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+/* CORRECCIÓN PRINCIPAL: Mejor posicionamiento de controles del calendario */
+.fc-toolbar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 1rem !important;
+    padding: 20px 25px !important;
+    background-color: var(--calendar-header-bg) !important;
+    border-radius: 8px !important;
+    border: 1px solid #e9ecef !important;
+    flex-wrap: wrap !important;
+    gap: 15px !important;
+}
+
+/* Chunk izquierdo: Flechas de navegación */
+.fc-toolbar-chunk:first-child {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    order: 1 !important;
+}
+
+/* Chunk central: Título del mes */
+.fc-toolbar-chunk:nth-child(2) {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 1 !important;
+    order: 2 !important;
+    text-align: center !important;
+}
+
+/* Chunk derecho: Botones de vista y botón Hoy */
+.fc-toolbar-chunk:last-child {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    order: 3 !important;
+    flex-shrink: 0 !important;
+    min-width: 320px !important;
+}
+
+.fc-today-button {
+    background-color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+    color: var(--dark-text) !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+    padding: 8px 16px !important;
+    transition: all 0.3s ease !important;
+    order: 2 !important;
+    margin: 0 10px !important;
+}
+
+.fc-today-button:hover {
+    background-color: #ffcd33 !important;
+    border-color: #ffcd33 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(255, 209, 102, 0.3) !important;
+}
+
+/* Flechas de navegación mejoradas */
+.fc-prev-button, .fc-next-button {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    border-radius: 50% !important;
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+    flex-shrink: 0 !important;
+}
+
+.fc-prev-button {
+    order: 1 !important;
+}
+
+.fc-next-button {
+    order: 3 !important;
+}
+
+.fc-prev-button:hover, .fc-next-button:hover {
+    background-color: #246a83 !important;
+    border-color: #246a83 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(45, 125, 154, 0.3) !important;
+}
+
+/* Botones de vista (Mes, Semana, Día, Lista) con más espacio */
+.fc-button-group {
+    display: flex !important;
+    gap: 5px !important;
+    flex-wrap: nowrap !important;
+    flex-shrink: 0 !important;
+}
+
+.fc-button {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    border-radius: 6px !important;
+    padding: 8px 14px !important;
+    transition: all 0.3s ease !important;
+    font-size: 0.9rem !important;
+    min-width: 60px !important;
+    white-space: nowrap !important;
+}
+
+.fc-button:hover {
+    background-color: #246a83 !important;
+    border-color: #246a83 !important;
+    transform: translateY(-2px);
+}
+
+.fc-button-active {
+    background-color: #1a5366 !important;
+    border-color: #1a5366 !important;
+}
+
+.fc-event {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    padding: 2px 4px;
+}
+
+.fc-event:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.fc-event .fc-event-main {
+    padding: 3px;
+}
+
+.fc-daygrid-day-frame {
+    background-color: rgba(245, 245, 245, 0.5);
+    transition: background-color 0.3s ease;
+}
+
+.fc-daygrid-day-frame:hover {
+    background-color: var(--day-hover-bg);
+}
+
+.fc-day-today {
+    background-color: var(--today-bg) !important;
+}
+
+.fc-daygrid-day-number {
+    font-weight: 600;
+    color: var(--dark-text);
+    font-size: 1.1rem;
+}
+
+/* Encabezados de columnas con mejor contraste */
+.fc-col-header-cell {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    padding: 12px 0 !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+.fc-col-header-cell a {
+    color: white !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1) !important;
+}
+
+/* Tipos de citas por especialidad */
+.fc-event-preventive {
+    background-color: var(--preventive-color);
+    border-left: 4px solid #1aa37e;
+}
+
+.fc-event-restorative {
+    background-color: var(--restorative-color);
+    border-left: 4px solid #5a32a3;
+}
+
+.fc-event-surgical {
+    background-color: var(--surgical-color);
+    border-left: 4px solid #c2185b;
+}
+
+.fc-event-cosmetic {
+    background-color: var(--cosmetic-color);
+    border-left: 4px solid #e65100;
+}
+
+.fc-event-pediatric {
+    background-color: var(--pediatric-color);
+    border-left: 4px solid #0d8abc;
+}
+
+.fc-event-periodontal {
+    background-color: var(--periodontal-color);
+    border-left: 4px solid #c62828;
+}
+
+.fc-event-endodontic {
+    background-color: var(--endodontic-color);
+    border-left: 4px solid #5810d1;
+}
+
+.fc-event-orthodontic {
+    background-color: var(--orthodontic-color);
+    border-left: 4px solid #e6a700;
+}
+
+.fc-event-prosthetic {
+    background-color: var(--prosthetic-color);
+    border-left: 4px solid #343a40;
+}
+
+.fc-event-emergency {
+    background-color: var(--emergency-color);
+    border-left: 4px solid #c62828;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+.fc-event-main-frame {
+    padding: 4px;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.fc-event-time {
+    font-weight: bold;
+    margin-bottom: 3px;
+    font-size: 0.8rem;
+}
+
+.fc-event-title {
+    line-height: 1.3;
+}
+
+/* Aside mejorado */
+.aside-card {
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.aside-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.aside-card .card-header {
+    border-radius: 12px 12px 0 0 !important;
+    padding: 15px 20px;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.aside-card .card-body {
+    padding: 20px;
+}
+
+.aside-card p {
+    margin-bottom: 10px;
+}
+
+.aside-card strong {
+    color: var(--primary-color);
+}
+
+.list-group-item {
+    padding: 12px 20px;
+    border-color: rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: rgba(45, 125, 154, 0.05);
+    transform: translateX(5px);
+}
+
+/* Leyenda de colores mejorada */
+.legend-container {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.legend-container h6 {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.legend-item:hover {
+    background-color: rgba(0,0,0,0.02);
+    transform: translateX(5px);
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    margin-right: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Footer mejorado */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 30px 0 20px;
+    margin-top: 50px;
+}
+
+footer h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+footer h5 i {
+    margin-right: 10px;
+}
+
+footer p {
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+footer a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+footer hr {
+    border-color: rgba(255,255,255,0.15);
+    margin: 25px 0;
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* Modales mejorados */
+.modal-content {
+    border-radius: 12px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+}
+
+.modal-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px;
+}
+
+.modal-title {
+    font-weight: 600;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-footer {
+    padding: 15px 25px;
+    background-color: #f8f9fa;
+}
+
+.appointment-detail {
+    padding: 10px;
+}
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-row i {
+    width: 24px;
+    text-align: center;
+    margin-right: 15px;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.detail-row span {
+    flex: 1;
+}
+
+/* Formularios mejorados */
+.form-label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--dark-text);
+}
+
+.form-control, .form-select {
+    border-radius: 8px;
+    padding: 12px 15px;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Efectos de hover generales */
+.btn, .fc-button, .list-group-item, .legend-item, .aside-card, .stats-card {
+    transition: all 0.3s ease;
+}
+
+/* MEDIA QUERIES PARA RESPONSIVE DESIGN */
+
+/* Large devices (desktops, 992px to 1199px) */
+@media (max-width: 1199.98px) {
+    .container-odontocalendar {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .stats-card h3 {
+        font-size: 1.6rem;
+    }
+
+    .navbar-brand-odonto .clinic-name {
+        font-size: 1.3rem;
+    }
+
+    .fc-toolbar-title {
+        font-size: 1.2rem;
+    }
+
+    .fc-toolbar-chunk:last-child {
+        min-width: 280px !important;
+    }
+}
+
+/* Medium devices (tablets, 768px to 991px) */
+@media (max-width: 991.98px) {
+    .navbar-odonto {
+        padding: 12px 15px;
+    }
+
+    .logo-odonto {
+        height: 42px;
+        width: 42px;
+        font-size: 1.3rem;
+    }
+
+    .stats-card {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .stats-card h3 {
+        font-size: 1.4rem;
+    }
+
+    .stats-card i {
+        font-size: 1.6rem;
+    }
+
+    .fc-toolbar {
+        flex-direction: column !important;
+        gap: 15px !important;
+        padding: 15px !important;
+    }
+
+    .fc-toolbar-chunk {
+        margin-bottom: 0 !important;
+        justify-content: center !important;
+        width: 100% !important;
+        order: initial !important;
+    }
+
+    .fc-toolbar-chunk:first-child {
+        order: 2 !important;
+    }
+
+    .fc-toolbar-chunk:nth-child(2) {
+        order: 1 !important;
+    }
+
+    .fc-toolbar-chunk:last-child {
+        order: 3 !important;
+        min-width: auto !important;
+    }
+
+    .filter-section .row {
+        gap: 10px;
+    }
+
+    .calendar-container {
+        padding: 15px;
+    }
+
+    .fc-event {
+        font-size: 0.75rem;
+    }
+}
+
+/* Small devices (landscape phones, 576px to 767px) */
+@media (max-width: 767.98px) {
+    .container-odontocalendar {
+        padding: 10px;
+    }
+
+    .navbar-odonto {
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+
+    .navbar-brand-odonto {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .logo-odonto {
+        height: 38px;
+        width: 38px;
+        margin-right: 10px;
+        font-size: 1.2rem;
+    }
+
+    .clinic-name {
+        font-size: 1.1rem;
+    }
+
+    .stats-card {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    .stats-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .stats-card h5 {
+        font-size: 0.9rem;
+    }
+
+    .stats-card i {
+        font-size: 1.4rem;
+    }
+
+    .filter-section {
+        padding: 15px;
+    }
+
+    .fc-toolbar-title {
+        font-size: 1rem;
+    }
+
+    .fc-button {
+        padding: 0.4rem 0.8rem !important;
+        font-size: 0.8rem !important;
+        min-width: 50px !important;
+    }
+
+    .fc-prev-button, .fc-next-button {
+        width: 36px !important;
+        height: 36px !important;
+    }
+
+    .fc-today-button {
+        padding: 6px 12px !important;
+        font-size: 0.8rem !important;
+    }
+
+    .fc-event {
+        font-size: 0.7rem;
+        padding: 1px 3px;
+    }
+
+    .fc-event-time {
+        font-size: 0.7rem;
+    }
+
+    .fc-event-title {
+        font-size: 0.7rem;
+    }
+
+    .aside-card .card-header {
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
+
+    .aside-card .card-body {
+        padding: 15px;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .container-odontocalendar {
+        padding: 8px;
+    }
+
+    .navbar-odonto {
+        margin-bottom: 15px;
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    .logo-odonto {
+        height: 34px;
+        width: 34px;
+        font-size: 1rem;
+        padding: 8px;
+    }
+
+    .clinic-name {
+        font-size: 1rem;
+    }
+
+    .stats-card {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    .stats-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .stats-card h5 {
+        font-size: 0.8rem;
+    }
+
+    .stats-card i {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .filter-section {
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    .calendar-container {
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    .fc-toolbar {
+        padding: 10px !important;
+    }
+
+    .fc-toolbar-title {
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
+    .fc-button {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.75rem !important;
+    }
+
+    .fc-prev-button, .fc-next-button {
+        width: 28px !important;
+        height: 28px !important;
+    }
+
+    .fc-today-button {
+        padding: 4px 8px !important;
+        font-size: 0.75rem !important;
+    }
+
+    .fc-event {
+        font-size: 0.65rem;
+        padding: 1px 2px;
+    }
+
+    .fc-daygrid-day-number {
+        font-size: 0.9rem;
+    }
+
+    .legend-container {
+        padding: 15px;
+    }
+
+    .legend-item {
+        padding: 6px 10px;
+        margin-bottom: 8px;
+    }
+
+    .legend-color {
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+    }
+
+    footer {
+        padding: 20px 0 15px;
+    }
+
+    footer h5 {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+    }
+
+
+    .social-icons a {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+}
